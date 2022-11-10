@@ -4,8 +4,6 @@ import (
 	"context"
 	"data-platform-api-product-master-exconf-rmq-kube/config"
 	"data-platform-api-product-master-exconf-rmq-kube/database"
-	"data-platform-api-product-master-exconf-rmq-kube/formatter"
-	"encoding/json"
 	"fmt"
 
 	"github.com/latonaio/golang-logging-library/logger"
@@ -51,33 +49,9 @@ func dataCheckProcess(
 	exist := (*ExistencyChecker).Check(NewExistencyChecker(ctx, db, l), data)
 	rmqMsg.Respond(exist)
 	l.Info(exist)
-
-	inputParams, err := inputParamsToMarshall(l, rmqMsg)
-	if err != nil {
-		l.Fatal("inputParamsToMarshall error")
-	}
-
-	l.Info(inputParams.ServiceLabel)
 }
 
 func getBodyHeader(data map[string]interface{}) string {
 	id := fmt.Sprintf("%v", data["runtime_session_id"])
 	return id
-}
-
-func inputParamsToMarshall(l *logger.Logger, msg rabbitmq.RabbitmqMessage) (*formatter.InputParams, error) {
-	raw, err := json.Marshal(msg.Data())
-	if err != nil {
-		l.Fatal("data marshal error", err)
-		return nil, err
-	}
-
-	inputParams := formatter.InputParams{}
-	err = json.Unmarshal(raw, &inputParams)
-	if err != nil {
-		l.Fatal("inputServiceParam unmarshal error", err)
-		return nil, err
-	}
-
-	return &inputParams, nil
 }

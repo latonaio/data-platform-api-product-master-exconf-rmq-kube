@@ -34,7 +34,7 @@ func (e *ExistencyChecker) Check(data map[string]interface{}) map[string]interfa
 	}
 	wg := sync.WaitGroup{}
 
-	rawOrderData, ok := data["Orders"]
+	rawOrderData, ok := data["Orders"] // 変更箇所
 	if !ok {
 		return existData
 	}
@@ -50,7 +50,7 @@ func (e *ExistencyChecker) Check(data map[string]interface{}) map[string]interfa
 		v := fmt.Sprintf("%v", orderData[k])
 		notExistKeys := make([]string, 0, len(orderData))
 		switch k {
-		case "Product":
+		case "Product": // 変更箇所
 			wg.Add(1)
 			existData[k] = v
 			go func() {
@@ -66,7 +66,7 @@ func (e *ExistencyChecker) Check(data map[string]interface{}) map[string]interfa
 	return existData
 }
 
-func (e *ExistencyChecker) checkProduct(key string) bool {
+func (e *ExistencyChecker) checkProduct(key string) bool { // 変更箇所(関数全体)
 	start := time.Now()
 	d, err := models.FindDataPlatformProductMasterGeneralDatum(e.ctx, e.db, key)
 	if d == nil || err != nil {
