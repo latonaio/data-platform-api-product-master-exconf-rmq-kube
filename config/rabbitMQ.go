@@ -24,6 +24,7 @@ func newRMQ() *RMQ {
 		port:      os.Getenv("RMQ_PORT"),
 		vhost:     os.Getenv("RMQ_VHOST"),
 		queueFrom: os.Getenv("RMQ_QUEUE_FROM"),
+
 		queueTo: []string{
 			os.Getenv("RMQ_QUEUE_TO"),
 		},
@@ -37,7 +38,6 @@ func (c *RMQ) URL() string {
 func (c *RMQ) QueueFrom() string {
 	return c.queueFrom
 }
-
 func (c *RMQ) QueueTo() []string {
 	return c.queueTo
 }

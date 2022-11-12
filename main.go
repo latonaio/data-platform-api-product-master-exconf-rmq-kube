@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
+	dpfm_api_caller "data-platform-api-product-master-exconf-rmq-kube/DPFM_API_Caller"
 	"data-platform-api-product-master-exconf-rmq-kube/config"
 	"data-platform-api-product-master-exconf-rmq-kube/database"
 	"fmt"
 
-	"github.com/latonaio/golang-logging-library/logger"
+	"github.com/latonaio/golang-logging-library-for-data-platform/logger"
 	rabbitmq "github.com/latonaio/rabbitmq-golang-client-for-data-platform"
 )
 
@@ -30,11 +31,11 @@ func main() {
 	}
 	defer rmq.Stop()
 	for msg := range iter {
-		go dataCheckProcess(ctx, c, db, msg)
+		go dataCallProcess(ctx, c, db, msg)
 	}
 }
 
-func dataCheckProcess(
+func dataCallProcess(
 	ctx context.Context,
 	c *config.Conf,
 	db *database.Mysql,
@@ -45,8 +46,10 @@ func dataCheckProcess(
 	data := rmqMsg.Data()
 	sessionId := getBodyHeader(data)
 	l.AddHeaderInfo(map[string]interface{}{"runtime_session_id": sessionId})
+	l.Info(rmqMsg.Data())
 
-	exist := (*ExistencyChecker).Check(NewExistencyChecker(ctx, db, l), data)
+	conf := dpfm_api_caller.NewExistenceConf(ctx, db, l)
+	exist := conf.Conf(rmqMsg)
 	rmqMsg.Respond(exist)
 	l.Info(exist)
 }
