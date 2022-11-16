@@ -3,13 +3,11 @@ package dpfm_api_caller
 import (
 	"context"
 	dpfm_api_input_reader "data-platform-api-product-master-exconf-rmq-kube/DPFM_API_Input_Reader"
+	dpfm_api_output_formatter "data-platform-api-product-master-exconf-rmq-kube/DPFM_API_Output_Formatter"
 	"data-platform-api-product-master-exconf-rmq-kube/database"
-	"encoding/json"
-	"fmt"
 	"sync"
 
 	"github.com/latonaio/golang-logging-library-for-data-platform/logger"
-	rabbitmq "github.com/latonaio/rabbitmq-golang-client-for-data-platform"
 )
 
 type ExistenceConf struct {
@@ -26,24 +24,18 @@ func NewExistenceConf(ctx context.Context, db *database.Mysql, l *logger.Logger)
 	}
 }
 
-func (e *ExistenceConf) Conf(data rabbitmq.RabbitmqMessage) map[string]interface{} {
-	existData := map[string]interface{}{
-		"ExistenceConf": false,
-	}
-	input := dpfm_api_input_reader.SDC{}
-	err := json.Unmarshal(data.Raw(), &input)
-	if err != nil {
-		return existData
-	}
-
-	conf := "Product"
+func (e *ExistenceConf) Conf(input *dpfm_api_input_reader.SDC) *dpfm_api_output_formatter.ProductMasterGeneral {
 	product := *input.ProductMasterGeneral.Product
 	notKeyExistence := make([]string, 0, 1)
 	KeyExistence := make([]string, 0, 1)
 
+	existData := &dpfm_api_output_formatter.ProductMasterGeneral{
+		Product:       product,
+		ExistenceConf: false,
+	}
+
 	wg := sync.WaitGroup{}
 	wg.Add(1)
-	existData[conf] = product
 	go func() {
 		defer wg.Done()
 		if !e.confProductMasterGeneral(product) {
@@ -62,7 +54,7 @@ func (e *ExistenceConf) Conf(data rabbitmq.RabbitmqMessage) map[string]interface
 		return existData
 	}
 
-	existData["ExistenceConf"] = true
+	existData.ExistenceConf = true
 	return existData
 }
 
@@ -73,7 +65,7 @@ func (e *ExistenceConf) confProductMasterGeneral(val string) bool {
 		WHERE Product = ?;`, val,
 	)
 	if err != nil {
-		fmt.Printf("err = %+v \n", err)
+		e.l.Error(err)
 		return false
 	}
 
@@ -81,10 +73,9 @@ func (e *ExistenceConf) confProductMasterGeneral(val string) bool {
 		var product string
 		err := rows.Scan(&product)
 		if err != nil {
-			fmt.Printf("err = %+v \n", err)
+			e.l.Error(err)
 			continue
 		}
-		fmt.Printf("data = %+v \n", product)
 		if product == val {
 			return true
 		}

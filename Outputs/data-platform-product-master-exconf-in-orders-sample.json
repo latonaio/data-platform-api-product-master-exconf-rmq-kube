@@ -1,11 +1,13 @@
 {
-	"cursor": "/go/src/github.com/latonaio/existence_check/checker.go#L116",
-	"function": "data-platform-api-orders-creates-rmq-kube/existence_check.(*ExistenceChecker).bpExistenceCheck",
+	"cursor": "/Users/latona2/bitbucket/data-platform-api-product-master-exconf-rmq-kube/main.go#L69",
+	"function": "main.dataCallProcess",
 	"level": "INFO",
 	"message": {
-		"Product": "A012",
-		"ExistenceConf": true
+		"ProductMasterGeneral": {
+			"Product": "A3750",
+			"ExistenceConf": true
+		}
 	},
 	"runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
-	"time": "2022-11-08T07:50:59Z"
+	"time": "2022-11-14T23:18:48+09:00"
 }

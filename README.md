@@ -8,10 +8,10 @@ data-platform-api-product-master-exconf-rmq-kube は、データ連携基盤に�
 ## 存在確認先テーブル名
 以下のsqlファイルに対して、ビジネスパートナの存在確認が行われます。
 
-* data-platform-product-master-general-data.sql（データ連携基盤 品目マスタ - 一般データ）
+* data-platform-product-master-sql-general-data.sql（データ連携基盤 品目マスタ - 一般データ）
 
-## existence_check.go による存在性確認
-Input で取得されたファイルに基づいて、existence_check.go で、 API がコールされます。
+## caller.go による存在性確認
+Input で取得されたファイルに基づいて、caller.go で、 API がコールされます。
 caller.go の 以下の箇所が、指定された API をコールするソースコードです。
 
 ```
@@ -84,14 +84,16 @@ data-platform-api-product-master-exconf-rmq-kube では、[golang-logging-librar
 
 ```
 {
-	"cursor": "/go/src/github.com/latonaio/existence_check/checker.go#L116",
-	"function": "data-platform-api-orders-creates-rmq-kube/existence_check.(*ExistenceChecker).bpExistenceCheck",
+	"cursor": "/Users/latona2/bitbucket/data-platform-api-product-master-exconf-rmq-kube/main.go#L69",
+	"function": "main.dataCallProcess",
 	"level": "INFO",
 	"message": {
-		"Product": "A012",
-		"ExistenceConf": true
+		"ProductMasterGeneral": {
+			"Product": "A3750",
+			"ExistenceConf": true
+		}
 	},
 	"runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
-	"time": "2022-11-08T07:50:59Z"
+	"time": "2022-11-14T23:18:48+09:00"
 }
 ```

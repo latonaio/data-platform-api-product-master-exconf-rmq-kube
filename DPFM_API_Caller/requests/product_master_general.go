@@ -1,5 +1,5 @@
 package requests
 
-type General struct {
+type ProductMasterGeneral struct {
 	Product *string `json:"Product"`
 }

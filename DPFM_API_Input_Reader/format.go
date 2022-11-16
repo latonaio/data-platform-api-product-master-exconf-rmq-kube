@@ -4,9 +4,9 @@ import (
 	"data-platform-api-product-master-exconf-rmq-kube/DPFM_API_Caller/requests"
 )
 
-func (sdc *SDC) ConvertToGeneral() *requests.General {
+func (sdc *SDC) ConvertToProductMasterGeneral() *requests.ProductMasterGeneral {
 	data := sdc.ProductMasterGeneral
-	return &requests.General{
+	return &requests.ProductMasterGeneral{
 		Product: data.Product,
 	}
 }
