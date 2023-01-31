@@ -9,50 +9,61 @@ data-platform-api-product-master-exconf-rmq-kube は、データ連携基盤に�
 以下のsqlファイルに対して、ビジネスパートナの存在確認が行われます。
 
 * data-platform-product-master-sql-general-data.sql（データ連携基盤 品目マスタ - 一般データ）
+* data-platform-product-master-sql-business-partner-data.sql（データ連携基盤 品目マスタ - ビジネスパートナデータ）
+* data-platform-product-master-sql-bp-plant-data.sql（データ連携基盤 品目マスタ - BPプラントデータ）
+* data-platform-product-master-sql-storage-location-data.sql（データ連携基盤 品目マスタ - 保管場所データ）
 
 ## caller.go による存在性確認
 Input で取得されたファイルに基づいて、caller.go で、 API がコールされます。
 caller.go の 以下の箇所が、指定された API をコールするソースコードです。
 
 ```
-func (e *ExistenceConf) Conf(data rabbitmq.RabbitmqMessage) map[string]interface{} {
-	existData := map[string]interface{}{
+func (e *ExistenceConf) Conf(msg rabbitmq.RabbitmqMessage) interface{} {
+	var ret interface{}
+	ret = map[string]interface{}{
 		"ExistenceConf": false,
 	}
-	input := dpfm_api_input_reader.SDC{}
-	err := json.Unmarshal(data.Raw(), &input)
+	input := make(map[string]interface{})
+	err := json.Unmarshal(msg.Raw(), &input)
 	if err != nil {
-		return existData
+		return ret
 	}
 
-	conf := "Product"
-	product := *input.ProductMasterGeneral.Product
-	notKeyExistence := make([]string, 0, 1)
-	KeyExistence := make([]string, 0, 1)
-
-	wg := sync.WaitGroup{}
-	wg.Add(1)
-	existData[conf] = product
-	go func() {
-		defer wg.Done()
-		if !e.confProductMasterGeneral(product) {
-			notKeyExistence = append(notKeyExistence, product)
-			return
-		}
-		KeyExistence = append(KeyExistence, product)
-	}()
-
-	wg.Wait()
-
-	if len(KeyExistence) == 0 {
-		return existData
+	_, ok := input["ProductMasterGeneral"]
+	if ok {
+		input := &dpfm_api_input_reader.GeneralSDC{}
+		err = json.Unmarshal(msg.Raw(), input)
+		ret = e.confProductMasterGeneral(input)
+		goto endProcess
 	}
-	if len(notKeyExistence) > 0 {
-		return existData
+	_, ok = input["ProductMasterBusinessPartner"]
+	if ok {
+		input := &dpfm_api_input_reader.BusinessPartnerSDC{}
+		err = json.Unmarshal(msg.Raw(), input)
+		ret = e.confProductMasterBusinessPartner(input)
+		goto endProcess
+	}
+	_, ok = input["ProductMasterBPPlant"]
+	if ok {
+		input := &dpfm_api_input_reader.BPPlantSDC{}
+		err = json.Unmarshal(msg.Raw(), input)
+		ret = e.confProductMasterBPPlant(input)
+		goto endProcess
+	}
+	_, ok = input["ProductMasterStorageLocation"]
+	if ok {
+		input := &dpfm_api_input_reader.StorageLocationSDC{}
+		err = json.Unmarshal(msg.Raw(), input)
+		ret = e.confProductMasterStorageLocation(input)
+		goto endProcess
 	}
 
-	existData["ExistenceConf"] = true
-	return existData
+	err = xerrors.Errorf("can not get exconf check target")
+endProcess:
+	if err != nil {
+		e.l.Error(err)
+	}
+	return ret
 }
 
 ```

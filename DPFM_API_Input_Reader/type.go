@@ -53,7 +53,7 @@ type EC_MC struct {
 	Deleted       bool     `json:"deleted"`
 }
 
-type SDC struct {
+type GeneralSDC struct {
 	ConnectionKey        string `json:"connection_key"`
 	Result               bool   `json:"result"`
 	RedisKey             string `json:"redis_key"`
@@ -65,6 +65,68 @@ type SDC struct {
 	ProductMasterGeneral struct {
 		Product *string `json:"Product"`
 	} `json:"ProductMasterGeneral"`
+	APISchema string   `json:"api_schema"`
+	Accepter  []string `json:"accepter"`
+	OrderID   *int     `json:"order_id"`
+	Deleted   bool     `json:"deleted"`
+}
+
+type BusinessPartnerSDC struct {
+	ConnectionKey                string `json:"connection_key"`
+	Result                       bool   `json:"result"`
+	RedisKey                     string `json:"redis_key"`
+	Filepath                     string `json:"filepath"`
+	APIStatusCode                int    `json:"api_status_code"`
+	RuntimeSessionID             string `json:"runtime_session_id"`
+	BusinessPartner              *int   `json:"business_partner"`
+	ServiceLabel                 string `json:"service_label"`
+	ProductMasterBusinessPartner struct {
+		Product           *string `json:"Product"`
+		BusinessPartner   *int    `json:"BusinessPartner"`
+		ValidityEndDate   *string `json:"ValidityEndDate"`
+		ValidityStartDate *string `json:"ValidityStartDate"`
+	} `json:"ProductMasterBusinessPartner"`
+	APISchema string   `json:"api_schema"`
+	Accepter  []string `json:"accepter"`
+	OrderID   *int     `json:"order_id"`
+	Deleted   bool     `json:"deleted"`
+}
+
+type BPPlantSDC struct {
+	ConnectionKey        string `json:"connection_key"`
+	Result               bool   `json:"result"`
+	RedisKey             string `json:"redis_key"`
+	Filepath             string `json:"filepath"`
+	APIStatusCode        int    `json:"api_status_code"`
+	RuntimeSessionID     string `json:"runtime_session_id"`
+	BusinessPartner      *int   `json:"business_partner"`
+	ServiceLabel         string `json:"service_label"`
+	ProductMasterBPPlant struct {
+		Product         *string `json:"Product"`
+		BusinessPartner *int    `json:"BusinessPartner"`
+		Plant           *string `json:"Plant"`
+	} `json:"ProductMasterBPPlant"`
+	APISchema string   `json:"api_schema"`
+	Accepter  []string `json:"accepter"`
+	OrderID   *int     `json:"order_id"`
+	Deleted   bool     `json:"deleted"`
+}
+
+type StorageLocationSDC struct {
+	ConnectionKey                string `json:"connection_key"`
+	Result                       bool   `json:"result"`
+	RedisKey                     string `json:"redis_key"`
+	Filepath                     string `json:"filepath"`
+	APIStatusCode                int    `json:"api_status_code"`
+	RuntimeSessionID             string `json:"runtime_session_id"`
+	BusinessPartner              *int   `json:"business_partner"`
+	ServiceLabel                 string `json:"service_label"`
+	ProductMasterStorageLocation struct {
+		Product         *string `json:"Product"`
+		BusinessPartner *int    `json:"BusinessPartner"`
+		Plant           *string `json:"Plant"`
+		StorageLocation *string `json:"StorageLocation"`
+	} `json:"ProductMasterStorageLocation"`
 	APISchema string   `json:"api_schema"`
 	Accepter  []string `json:"accepter"`
 	OrderID   *int     `json:"order_id"`

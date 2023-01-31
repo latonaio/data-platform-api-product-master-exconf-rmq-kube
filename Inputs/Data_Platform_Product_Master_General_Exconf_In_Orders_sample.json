@@ -4,7 +4,7 @@
 	"redis_key": "abcdefg",
 	"api_status_code": 200,
 	"runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
-	"business_partner": 201,
+	"business_partner": 101,
 	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
 	"service_label": "ORDERS",
 	"ProductMasterGeneral": {
@@ -15,3 +15,4 @@
 	"order_id": null,
 	"deleted": false
 }
+
