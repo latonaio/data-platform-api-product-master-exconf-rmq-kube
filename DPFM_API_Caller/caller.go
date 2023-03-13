@@ -95,6 +95,7 @@ func (e *ExistenceConf) confProductMasterGeneral(input *dpfm_api_input_reader.Ge
 		e.l.Error(err)
 		return &exconf
 	}
+	defer rows.Close()
 
 	exconf.ExistenceConf = rows.Next()
 	return &exconf
@@ -133,6 +134,7 @@ func (e *ExistenceConf) confProductMasterBusinessPartner(input *dpfm_api_input_r
 		e.l.Error(err)
 		return &exconf
 	}
+	defer rows.Close()
 
 	exconf.ExistenceConf = rows.Next()
 	return &exconf
@@ -159,7 +161,7 @@ func (e *ExistenceConf) confProductMasterBPPlant(input *dpfm_api_input_reader.BP
 	}
 
 	rows, err := e.db.Query(
-		`SELECT ProductMaster
+		`SELECT Product
 		FROM DataPlatformMastersAndTransactionsMysqlKube.data_platform_product_master_bp_plant_data
 		WHERE (Product, BusinessPartner, Plant) = (?, ?, ?);`, exconf.Product, exconf.BusinessPartner, exconf.Plant,
 	)
@@ -167,6 +169,7 @@ func (e *ExistenceConf) confProductMasterBPPlant(input *dpfm_api_input_reader.BP
 		e.l.Error(err)
 		return &exconf
 	}
+	defer rows.Close()
 
 	exconf.ExistenceConf = rows.Next()
 	return &exconf
@@ -205,6 +208,7 @@ func (e *ExistenceConf) confProductMasterStorageLocation(input *dpfm_api_input_r
 		e.l.Error(err)
 		return &exconf
 	}
+	defer rows.Close()
 
 	exconf.ExistenceConf = rows.Next()
 	return &exconf
