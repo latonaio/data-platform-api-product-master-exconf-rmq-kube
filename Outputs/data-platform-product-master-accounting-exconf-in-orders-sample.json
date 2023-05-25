@@ -8,20 +8,22 @@
 	"business_partner": 101,
 	"service_label": "PRODUCT_MASTER",
 	"ProductMaster": {
-		"General": {
-			"Product": "A3750",
-			"ExistenceConf": true
-		},
+		"General": null,
 		"BusinessPartner": null,
 		"BPPlant": null,
 		"StorageLocation": null,
 		"MRPArea": null,
 		"WorkScheduling": null,
-		"Accounting": null
+		"Accounting": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01",
+			"ExistenceConf": true
+		}
 	},
 	"api_schema": "DPFMProductMasterExconf",
 	"accepter": [
-		"General"
+		"Accounting"
 	],
 	"deleted": false
 }

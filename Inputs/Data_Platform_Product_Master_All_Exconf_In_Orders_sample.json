@@ -44,10 +44,51 @@
 			"Product": "A3750",
 			"BusinessPartner": 101,
 			"Plant": "AB01"
+		},
+		"Tax": {
+			"Product": "A3750",
+			"Country": "JP",
+			"ProductTaxCategory": "MWST"
+		},
+		"ProductDescription": {
+			"Product": "A3750",
+			"Language": "JA"
+		},
+		"ProductDescByBP": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Language": "JA"
+		},
+		"Allergen": {
+			"Product": "A3750",
+			"BusinessPartner": 201,
+			"Allergen": "CRAB"
+		},
+		"Calories": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"CaloryUnitQuantity": 2
+		},
+		"NutritionalInfo": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Nutrient": "PROT"
+		},
+		"Quality": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01"
+		},
+		"StorageBin": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01",
+			"StorageLocation": "0000",
+			"StorageBin": "A01-01-01"
 		}
 	},
 	"api_schema": "DPFMProductMasterExconf",
-	"accepter": ["BPPlant"],
+	"accepter": ["All"],
 	"deleted": false
 }
 

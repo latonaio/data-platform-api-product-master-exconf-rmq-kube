@@ -47,7 +47,7 @@
 		}
 	},
 	"api_schema": "DPFMProductMasterExconf",
-	"accepter": ["BPPlant"],
+	"accepter": ["WorkScheduling"],
 	"deleted": false
 }
 

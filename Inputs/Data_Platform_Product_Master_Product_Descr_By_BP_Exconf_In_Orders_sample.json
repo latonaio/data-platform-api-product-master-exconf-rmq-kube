@@ -44,10 +44,24 @@
 			"Product": "A3750",
 			"BusinessPartner": 101,
 			"Plant": "AB01"
+		},
+		"Tax": {
+			"Product": "A3750",
+			"Country": "JP",
+			"ProductTaxCategory": "MWST"
+		},
+		"ProductDescription": {
+			"Product": "A3750",
+			"Language": "JA"
+		},
+		"ProductDescByBP": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Language": "JA"
 		}
 	},
 	"api_schema": "DPFMProductMasterExconf",
-	"accepter": ["BPPlant"],
+	"accepter": ["ProductDescByBP"],
 	"deleted": false
 }
 

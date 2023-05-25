@@ -1,6 +1,6 @@
 package requests
 
-type ProductMasterBPPlant struct {
+type Accounting struct {
 	Product         *string `json:"Product"`
 	BusinessPartner *int    `json:"BusinessPartner"`
 	Plant           *string `json:"Plant"`

@@ -6,14 +6,24 @@
 	"api_status_code": 200,
 	"runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
 	"business_partner": 101,
-	"service_label": "ORDERS",
-	"ProductMasterBPPlant": {
-		"Product": "A3750",
-		"BusinessPartner": 101,
-		"Plant": "AB01",
-		"ExistenceConf": true
+	"service_label": "PRODUCT_MASTER",
+	"ProductMaster": {
+		"General": null,
+		"BusinessPartner": null,
+		"BPPlant": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01",
+			"ExistenceConf": true
+		},
+		"StorageLocation": null,
+		"MRPArea": null,
+		"WorkScheduling": null,
+		"Accounting": null
 	},
-	"api_schema": "DPFMOrdersCreates",
-	"accepter": ["All"],
+	"api_schema": "DPFMProductMasterExconf",
+	"accepter": [
+		"BPPlant"
+	],
 	"deleted": false
 }

@@ -1,0 +1,109 @@
+{
+	"connection_key": "request",
+	"result": true,
+	"redis_key": "abcdefg",
+	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
+	"api_status_code": 200,
+	"runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
+	"business_partner": 101,
+	"service_label": "PRODUCT_MASTER",
+	"ProductMaster": {
+		"General": {
+			"Product": "A3750",
+			"ExistenceConf": true
+		},
+		"ProductDescription": {
+			"Product": "A3750",
+			"Language": "JA",
+			"ExistenceConf": true
+		},
+		"BusinessPartner": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"ValidityEndDate": "2022-12-20",
+			"ValidityStartDate": "2021-10-01",
+			"ExistenceConf": true
+		},
+		"ProductDescByBP": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Language": "JA",
+			"ExistenceConf": true
+		},
+		"BPPlant": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01",
+			"ExistenceConf": true
+		},
+		"StorageLocation": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01",
+			"StorageLocation": "0000",
+			"ExistenceConf": true
+		},
+		"MRPArea": {
+			"Product": "A3750",
+			"BusinessPartner": 102,
+			"Plant": "AB02",
+			"MRPArea": "PL1",
+			"ExistenceConf": true
+		},
+		"WorkScheduling": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01",
+			"ExistenceConf": true
+		},
+		"Accounting": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01",
+			"ExistenceConf": true
+		},
+		"Tax": {
+			"Product": "A3750",
+			"Country": "JP",
+			"ProductTaxCategory": "MWST",
+			"ExistenceConf": true
+		},
+		"Allergen": {
+			"Product": "A3750",
+			"BusinessPartner": 201,
+			"Allergen": "CRAB",
+			"ExistenceConf": true
+		},
+		"Calories": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"CaloryUnitQuantity": 2,
+			"ExistenceConf": true
+		},
+		"NutritionalInfo": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Nutrient": "PROT",
+			"ExistenceConf": true
+		},
+		"Quality": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01",
+			"ExistenceConf": false
+		},
+		"StorageBin": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"Plant": "AB01",
+			"StorageLocation": "0000",
+			"StorageBin": "A01-01-01",
+			"ExistenceConf": true
+		}
+	},
+	"api_schema": "DPFMProductMasterExconf",
+	"accepter": [
+		"All"
+	],
+	"deleted": false
+}

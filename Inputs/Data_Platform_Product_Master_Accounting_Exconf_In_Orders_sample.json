@@ -47,7 +47,7 @@
 		}
 	},
 	"api_schema": "DPFMProductMasterExconf",
-	"accepter": ["BPPlant"],
+	"accepter": ["Accounting"],
 	"deleted": false
 }
 

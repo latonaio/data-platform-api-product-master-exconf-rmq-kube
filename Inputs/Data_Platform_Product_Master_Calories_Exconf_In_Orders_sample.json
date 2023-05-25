@@ -44,10 +44,20 @@
 			"Product": "A3750",
 			"BusinessPartner": 101,
 			"Plant": "AB01"
+		},
+		"Allergen": {
+			"Product": "A3750",
+			"BusinessPartner": 201,
+			"Allergen": "CRAB"
+		},
+		"Calories": {
+			"Product": "A3750",
+			"BusinessPartner": 101,
+			"CaloryUnitQuantity": 2
 		}
 	},
 	"api_schema": "DPFMProductMasterExconf",
-	"accepter": ["BPPlant"],
+	"accepter": ["Calories"],
 	"deleted": false
 }
 
