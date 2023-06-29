@@ -1,0 +1,22 @@
+{
+  "connection_key": "request",
+  "result": true,
+  "redis_key": "abcdefg",
+  "api_status_code": 200,
+  "runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
+  "business_partner": 201,
+  "filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
+  "service_label": "SUPPLY_CHAIN_RELATIONSHIP",
+  "SupplyChainRelationshipDeliveryRelation": {
+    "SupplyChainRelationshipID": 100000000,
+    "SupplyChainRelationshipDeliveryID": 1100000001,
+    "Buyer": 101,
+    "Seller": 201,
+    "DeliverToParty": 101,
+    "DeliverFromParty": 202,
+    "api_schema": "DPFMSupplyChainRelationshipExconf",
+    "accepter": [
+      "All"
+    ]
+  }
+}

@@ -53,127 +53,19 @@ type EC_MC struct {
 	Deleted       bool     `json:"deleted"`
 }
 
-type SDC struct {
-	ConnectionKey    string        `json:"connection_key"`
-	Result           bool          `json:"result"`
-	RedisKey         string        `json:"redis_key"`
-	Filepath         string        `json:"filepath"`
-	APIStatusCode    int           `json:"api_status_code"`
-	RuntimeSessionID string        `json:"runtime_session_id"`
-	BusinessPartner  *int          `json:"business_partner"`
-	ServiceLabel     string        `json:"service_label"`
-	ProductMaster    ProductMaster `json:"ProductMaster"`
-	APISchema        string        `json:"api_schema"`
-	Accepter         []string      `json:"accepter"`
-	Deleted          bool          `json:"deleted"`
-}
-
-type ProductMaster struct {
-	General            General            `json:"General"`
-	ProductDescription ProductDescription `json:"ProductDescription"`
-	BusinessPartner    BusinessPartner    `json:"BusinessPartner"`
-	ProductDescByBP    ProductDescByBP    `json:"ProductDescByBP"`
-	BPPlant            BPPlant            `json:"BPPlant"`
-	StorageLocation    StorageLocation    `json:"StorageLocation"`
-	MRPArea            MRPArea            `json:"MRPArea"`
-	WorkScheduling     WorkScheduling     `json:"WorkScheduling"`
-	Accounting         Accounting         `json:"Accounting"`
-	Tax                Tax                `json:"Tax"`
-	Allergen           Allergen           `json:"Allergen"`
-	Calories           Calories           `json:"Calories"`
-	NutritionalInfo    NutritionalInfo    `json:"NutritionalInfo"`
-	Quality            Quality            `json:"Quality"`
-	StorageBin         StorageBin         `json:"StorageBin"`
-}
-
-type General struct {
-	Product *string `json:"Product"`
-}
-
-type ProductDescription struct {
-	Product  *string `json:"Product"`
-	Language *string `json:"Language"`
-}
-
-type BusinessPartner struct {
-	Product           *string `json:"Product"`
-	BusinessPartner   *int    `json:"BusinessPartner"`
-	ValidityEndDate   *string `json:"ValidityEndDate"`
-	ValidityStartDate *string `json:"ValidityStartDate"`
-}
-
-type ProductDescByBP struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Language        *string `json:"Language"`
-}
-
-type BPPlant struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Plant           *string `json:"Plant"`
-}
-
-type StorageLocation struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Plant           *string `json:"Plant"`
-	StorageLocation *string `json:"StorageLocation"`
-}
-
-type MRPArea struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Plant           *string `json:"Plant"`
-	MRPArea         *string `json:"MRPArea"`
-}
-
-type WorkScheduling struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Plant           *string `json:"Plant"`
-}
-
-type Accounting struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Plant           *string `json:"Plant"`
-}
-
-type Tax struct {
-	Product            *string `json:"Product"`
-	Country            *string `json:"Country"`
-	ProductTaxCategory *string `json:"ProductTaxCategory"`
-}
-
-type Allergen struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Allergen        *string `json:"Allergen"`
-}
-
-type Calories struct {
-	Product            *string `json:"Product"`
-	BusinessPartner    *int    `json:"BusinessPartner"`
-	CaloryUnitQuantity *int    `json:"CaloryUnitQuantity"`
-}
-
-type NutritionalInfo struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Nutrient        *string `json:"Nutrient"`
-}
-
-type Quality struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Plant           *string `json:"Plant"`
-}
-
-type StorageBin struct {
-	Product         *string `json:"Product"`
-	BusinessPartner *int    `json:"BusinessPartner"`
-	Plant           *string `json:"Plant"`
-	StorageLocation *string `json:"StorageLocation"`
-	StorageBin      *string `json:"StorageBin"`
+type GeneralSDC struct {
+	ConnectionKey                  string `json:"connection_key"`
+	Result                         bool   `json:"result"`
+	RedisKey                       string `json:"redis_key"`
+	Filepath                       string `json:"filepath"`
+	APIStatusCode                  int    `json:"api_status_code"`
+	RuntimeSessionID               string `json:"runtime_session_id"`
+	BusinessPartner                *int   `json:"business_partner"`
+	ServiceLabel                   string `json:"service_label"`
+	ProductMasterGeneral struct {
+		Product					  *string `json:"Product"`
+	} `json:"ProductMasterGeneral"`
+	APISchema string   `json:"api_schema"`
+	Accepter  []string `json:"accepter"`
+	Deleted   bool     `json:"deleted"`
 }
