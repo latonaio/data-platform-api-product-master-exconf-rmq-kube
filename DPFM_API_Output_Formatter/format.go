@@ -17,6 +17,28 @@ func NewOutput(rmqMsg rabbitmq.RabbitmqMessage, exconf interface{}) (*MetaData, 
 	switch exconf := exconf.(type) {
 	case *ProductMasterGeneral:
 		output.ProductMasterGeneral = exconf
+	case *ProductMasterBusinessPartner:
+		output.ProductMasterBusinessPartner = exconf
+	case *ProductMasterBPPlant:
+		output.ProductMasterBPPlant = exconf
+	case *ProductMasterMRPArea:
+		output.ProductMasterMRPArea = exconf
+	case *ProductMasterProduction:
+		output.ProductMasterProduction = exconf
+	case *ProductMasterStorageLocation:
+		output.ProductMasterStorageLocation = exconf
+	case *ProductMasterQuality:
+		output.ProductMasterQuality = exconf
+	case *ProductMasterAccounting:
+		output.ProductMasterAccounting = exconf
+	case *ProductMasterStorageBin:
+		output.ProductMasterStorageBin = exconf
+	case *ProductMasterTax:
+		output.ProductMasterTax = exconf
+	case *ProductMasterProductDescription:
+		output.ProductMasterProductDescription = exconf
+	case *ProductMasterProductDescByBP:
+		output.ProductMasterProductDescByBP = exconf
 	default:
 		return nil, xerrors.Errorf("unknown type %+v", exconf)
 	}
